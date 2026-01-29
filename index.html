@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pro-HOI | Project Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #060a10;
+        --card: rgba(255, 255, 255, 0.04);
+        --card-strong: rgba(255, 255, 255, 0.08);
+        --text: #e7edf5;
+        --muted: #9fb2c8;
+        --accent: #5bd0ff;
+        --accent-2: #8b5bff;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+      a {
+        color: inherit;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      .bg-glow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(60% 40% at 20% 20%, rgba(91, 208, 255, 0.25), transparent),
+          radial-gradient(50% 35% at 80% 10%, rgba(139, 91, 255, 0.25), transparent),
+          radial-gradient(40% 40% at 50% 60%, rgba(91, 208, 255, 0.15), transparent);
+        filter: blur(60px);
+        z-index: 0;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(14px);
+        background: rgba(6, 10, 16, 0.7);
+        border-bottom: 1px solid var(--border);
+      }
+      nav {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      nav .brand {
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      nav .chip {
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: linear-gradient(120deg, rgba(91, 208, 255, 0.2), rgba(139, 91, 255, 0.2));
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+      nav .links {
+        display: flex;
+        gap: 10px;
+      }
+      .btn {
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--text);
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        border-color: rgba(91, 208, 255, 0.5);
+        background: var(--card-strong);
+      }
+      .btn.primary {
+        background: linear-gradient(120deg, rgba(91, 208, 255, 0.25), rgba(139, 91, 255, 0.35));
+        border-color: rgba(91, 208, 255, 0.6);
+      }
+      main {
+        position: relative;
+        z-index: 1;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 32px 24px 80px;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+        align-items: center;
+        padding: 32px;
+        margin: 24px 0 12px;
+        border: 1px solid var(--border);
+        background: linear-gradient(130deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+        border-radius: 18px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+      }
+      .hero h1 {
+        margin: 0 0 12px;
+        font-size: clamp(30px, 4vw, 40px);
+      }
+      .hero .subtitle {
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .meta .pill {
+        padding: 6px 10px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 13px;
+      }
+      .hero-visual {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: var(--card);
+        min-height: 260px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-visual::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(160deg, rgba(91, 208, 255, 0.18), rgba(0, 0, 0, 0.6));
+        pointer-events: none;
+      }
+      .hero-visual .placeholder {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        color: var(--muted);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .section {
+        margin-top: 36px;
+      }
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .section h2 {
+        margin: 0;
+        font-size: 22px;
+      }
+      .section .hint {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--card);
+        padding: 18px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+      }
+      .media-frame {
+        position: relative;
+        padding-top: 56.25%;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: var(--card-strong);
+      }
+      .media-frame iframe,
+      .media-frame video,
+      .media-frame img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+      }
+      .gallery-item {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .gallery-item h4 {
+        margin: 0;
+        font-size: 16px;
+      }
+      .footer {
+        margin-top: 48px;
+        padding: 24px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        text-align: center;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.03);
+      }
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        nav {
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+        nav .links {
+          width: 100%;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-glow"></div>
+    <header>
+      <nav>
+        <div class="brand">
+          Pro-HOI
+          <span class="chip">Project</span>
+        </div>
+        <div class="links">
+          <a class="btn primary" href="#" target="_blank" rel="noopener">Paper</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">Code</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <div class="meta">
+            <span class="pill">Progressive Human-Object Interaction</span>
+            <span class="pill">2026</span>
+            <span class="pill">Embodied AI</span>
+          </div>
+          <h1>Pro-HOI: Progressive Human-Object Interaction Learning</h1>
+          <p class="subtitle">
+            A concise one-liner about Pro-HOI goes here. Summarize the key idea, capability, and novelty in
+            a single sentence to give visitors immediate context.
+          </p>
+          <div class="links">
+            <a class="btn primary" href="#" target="_blank" rel="noopener">Watch Teaser</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">BibTeX</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">Dataset</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="placeholder">Main visual / poster</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Main Video</h2>
+          <span class="hint">Replace with your highlight video embed or mp4</span>
+        </div>
+        <div class="card">
+          <div class="media-frame">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="Pro-HOI teaser"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Method Overview</h2>
+          <span class="hint">Swap with your pipeline / architecture figure</span>
+        </div>
+        <div class="card">
+          <div class="media-frame">
+            <img
+              src="https://placehold.co/1200x675/0b1624/9fb2c8?text=Method+Figure+Placeholder"
+              alt="Method figure placeholder"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Experiment Showcase</h2>
+          <span class="hint">Curate representative qualitative results</span>
+        </div>
+        <div class="grid">
+          <div class="card gallery-item">
+            <h4>Interaction 1</h4>
+            <div class="media-frame">
+              <video controls poster="https://placehold.co/800x450/0b1624/9fb2c8?text=Video+Placeholder">
+                <source src="placeholder1.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <p class="hint">Short description of the scenario and takeaway.</p>
+          </div>
+          <div class="card gallery-item">
+            <h4>Interaction 2</h4>
+            <div class="media-frame">
+              <video controls poster="https://placehold.co/800x450/0b1624/9fb2c8?text=Video+Placeholder">
+                <source src="placeholder2.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <p class="hint">Highlight robustness, generalization, or performance.</p>
+          </div>
+          <div class="card gallery-item">
+            <h4>Interaction 3</h4>
+            <div class="media-frame">
+              <video controls poster="https://placehold.co/800x450/0b1624/9fb2c8?text=Video+Placeholder">
+                <source src="placeholder3.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <p class="hint">Emphasize a unique capability or challenging setup.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Links</h2>
+          <span class="hint">Update with your real resources</span>
+        </div>
+        <div class="grid">
+          <a class="card btn" style="text-decoration: none" href="#" target="_blank" rel="noopener">
+            📄 Paper PDF
+          </a>
+          <a class="card btn" style="text-decoration: none" href="#" target="_blank" rel="noopener">
+            🧾 arXiv
+          </a>
+          <a class="card btn" style="text-decoration: none" href="#" target="_blank" rel="noopener">
+            💻 Code Repo
+          </a>
+          <a class="card btn" style="text-decoration: none" href="#" target="_blank" rel="noopener">
+            🎞️ Full Demos
+          </a>
+        </div>
+      </section>
+
+      <div class="footer">
+        Pro-HOI — replace with authors and affiliations. For updates, link to arXiv or GitHub releases.
+      </div>
+    </main>
+  </body>
+</html>
