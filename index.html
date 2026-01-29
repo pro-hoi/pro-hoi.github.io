@@ -1,346 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pro-HOI</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --bg: #05070b;
-        --panel: rgba(255, 255, 255, 0.03);
-        --text: #f2f4f8;
-        --muted: #9ca8b8;
-        --accent: #7ce7ff;
-        --border: rgba(255, 255, 255, 0.08);
-      }
-      a {
-        color: inherit;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
-        background: radial-gradient(circle at 20% 20%, rgba(124, 231, 255, 0.05), transparent 35%),
-          radial-gradient(circle at 80% 10%, rgba(124, 231, 255, 0.04), transparent 30%),
-          var(--bg);
-        color: var(--text);
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        backdrop-filter: blur(14px);
-        background: rgba(5, 7, 11, 0.75);
-        border-bottom: 1px solid var(--border);
-      }
-      nav {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 14px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      nav .brand {
-        font-weight: 700;
-        letter-spacing: 0.4px;
-        font-size: 18px;
-      }
-      nav .links {
-        display: flex;
-        gap: 8px;
-      }
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: var(--panel);
-        color: var(--muted);
-        font-size: 13px;
-      }
-      .btn {
-        border: 1px solid var(--border);
-        background: var(--panel);
-        color: var(--text);
-        padding: 10px 14px;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
-      }
-      .btn:hover {
-        transform: translateY(-2px);
-        border-color: rgba(124, 231, 255, 0.6);
-        background: rgba(124, 231, 255, 0.08);
-      }
-      .btn.primary {
-        background: linear-gradient(120deg, rgba(124, 231, 255, 0.25), rgba(255, 255, 255, 0.08));
-        border-color: rgba(124, 231, 255, 0.7);
-      }
-      main {
-        position: relative;
-        z-index: 1;
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 32px 20px 64px;
-      }
-      .hero {
-        padding: 40px 34px;
-        margin: 28px 0 10px;
-        border: 1px solid var(--border);
-        background: var(--panel);
-        border-radius: 18px;
-        display: grid;
-        gap: 18px;
-      }
-      .hero h1 {
-        margin: 0 0 12px;
-        font-size: clamp(30px, 4vw, 46px);
-      }
-      .hero .subtitle {
-        color: var(--muted);
-        line-height: 1.5;
-        margin-bottom: 16px;
-      }
-      .hero-visual {
-        position: relative;
-        border-radius: 14px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: rgba(255, 255, 255, 0.02);
-        min-height: 320px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--muted);
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        font-weight: 600;
-      }
-      .divider {
-        height: 1px;
-        border: 0;
-        background: var(--border);
-        margin: 8px 0 12px;
-      }
-      .section {
-        margin-top: 28px;
-      }
-      .section-header {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        margin-bottom: 14px;
-      }
-      .section h2 {
-        margin: 0;
-        font-size: 20px;
-      }
-      .section .hint {
-        color: var(--muted);
-        font-size: 14px;
-      }
-      .card {
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        background: var(--panel);
-        padding: 16px;
-      }
-      .media-frame {
-        position: relative;
-        padding-top: 56.25%;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: rgba(255, 255, 255, 0.04);
-      }
-      .media-frame iframe,
-      .media-frame video,
-      .media-frame img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 12px;
-      }
-      .gallery-item {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .gallery-item h4 {
-        margin: 0;
-        font-size: 15px;
-      }
-      .footer {
-        margin-top: 40px;
-        padding: 18px;
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        text-align: center;
-        color: var(--muted);
-        background: rgba(255, 255, 255, 0.02);
-        font-size: 14px;
-      }
-      @media (max-width: 720px) {
-        nav {
-          flex-direction: column;
-          gap: 10px;
-          align-items: flex-start;
-        }
-        .links {
-          flex-wrap: wrap;
-        }
-        .hero {
-          padding: 28px 22px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <div class="brand">
-          Pro-HOI
-        </div>
-        <div class="links">
-          <a class="btn primary" href="#" target="_blank" rel="noopener">Paper</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">Code</a>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <section class="hero">
-        <div>
-          <span class="pill">Progressive Human-Object Interaction</span>
-          <h1>Pro-HOI</h1>
-          <p class="subtitle">
-            One-line statement for Pro-HOI — briefly mention the key capability and novelty.
-          </p>
-          <div class="links">
-            <a class="btn primary" href="#" target="_blank" rel="noopener">Main Video</a>
-            <a class="btn" href="#" target="_blank" rel="noopener">Paper PDF</a>
-            <a class="btn" href="#" target="_blank" rel="noopener">Code</a>
-          </div>
-        </div>
-        <div class="hero-visual">Project visual / poster</div>
-      </section>
+<html>
+<head>
+  <style>
+    .publication-title {
+      font-family: 'Pacifico', cursive;
+      letter-spacing: 1px;
+    }
+    .highlight-pro {
+      color: #e63946;
+      text-shadow: 0 2px 6px rgba(230, 57, 70, 0.35);
+    }
+    .highlight-text {
+      color: #f28482;
+      text-shadow: 0 1px 4px rgba(242, 132, 130, 0.35);
+    }
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px; /* 两张图片之间的间距 */
+      margin-top: 10px;
+    }
+    .image-container img {
+      max-width: 10%;
+      height: auto;
+      border: 2px solid #ffffff;
+      border-radius: 10px;
+    }
+  </style>
 
-      <section class="section">
-        <div class="section-header">
-          <h2>Main Video</h2>
-          <span class="hint">Embed or mp4</span>
-        </div>
-        <div class="card">
-          <div class="media-frame">
-            <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="Pro-HOI teaser"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-      </section>
+<style>
 
-      <section class="section">
-        <div class="section-header">
-          <h2>Method Overview</h2>
-          <span class="hint">Pipeline / architecture</span>
-        </div>
-        <div class="card">
-          <div class="media-frame">
-            <img
-              src="https://placehold.co/1200x675/0b1624/9fb2c8?text=Method+Figure+Placeholder"
-              alt="Method figure placeholder"
-            />
-          </div>
-        </div>
-      </section>
+  .grid-container {
+    width: 150%;
+    max-width: 150%;;
+    padding: 40px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
 
-      <section class="section">
-        <div class="section-header">
-          <h2>Experiments</h2>
-          <span class="hint">Qualitative samples</span>
-        </div>
-        <div class="grid">
-          <div class="card gallery-item">
-            <h4>Interaction 1</h4>
-            <div class="media-frame">
-              <video controls poster="https://placehold.co/800x450/0b1624/9fb2c8?text=Video+Placeholder">
-                <source src="placeholder1.mp4" type="video/mp4" />
-              </video>
+    justify-content: center;
+    align-items: center;
+  
+  }
+
+
+  .video-item {
+    text-align: center;
+  }
+
+  .video-item video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .caption {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #222;
+  }
+
+
+  .grid-container2 {
+    width: 150%;
+    max-width: 150%;;
+    padding: 40px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 30px;
+
+    justify-content: center;
+    align-items: center;
+  
+  }
+
+</style>
+
+  <meta charset="utf-8">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/icon-v4.png"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pro-HOI</title>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="highlight-pro">Pro-HOI</span>: <span class="highlight-pro">P</span>erceptive <span class="highlight-pro">Ro</span>ot-guided <span class="highlight-pro">H</span>umanoid-<span class="highlight-pro">O</span>bject <span class="highlight-pro">I</span>nteraction</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a>Anonymous</a></span>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <span class="link-block">
+                <a href="TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+
             </div>
-            <p class="hint">Short description of the scenario and takeaway.</p>
-          </div>
-          <div class="card gallery-item">
-            <h4>Interaction 2</h4>
-            <div class="media-frame">
-              <video controls poster="https://placehold.co/800x450/0b1624/9fb2c8?text=Video+Placeholder">
-                <source src="placeholder2.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <p class="hint">Highlight robustness, generalization, or performance.</p>
-          </div>
-          <div class="card gallery-item">
-            <h4>Interaction 3</h4>
-            <div class="media-frame">
-              <video controls poster="https://placehold.co/800x450/0b1624/9fb2c8?text=Video+Placeholder">
-                <source src="placeholder3.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <p class="hint">Emphasize a unique capability or challenging setup.</p>
-          </div>
-        </div>
-      </section>
 
-      <section class="section">
-        <div class="section-header">
-          <h2>Links</h2>
-          <span class="hint">Update with real URLs</span>
+          </div>
         </div>
-        <div class="grid">
-          <a class="card btn" style="text-decoration: none" href="#" target="_blank" rel="noopener">
-            📄 Paper PDF
-          </a>
-          <a class="card btn" style="text-decoration: none" href="#" target="_blank" rel="noopener">
-            🧾 arXiv
-          </a>
-          <a class="card btn" style="text-decoration: none" href="#" target="_blank" rel="noopener">
-            💻 Code Repo
-          </a>
-          <a class="card btn" style="text-decoration: none" href="#" target="_blank" rel="noopener">
-            🎞️ Full Demos
-          </a>
-        </div>
-      </section>
-
-      <div class="footer">
-        Pro-HOI — replace with authors and affiliations. For updates, link to arXiv or GitHub releases.
       </div>
-    </main>
-  </body>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Video</h2>
+          <video src=""  autoplay  muted loop playsinline controls width="30%"></video>
+      </div>
+    </div>
+
+
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+          
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          
+        </div>
+      </div> 
+      
+      
+      <!-- </div>  -->
+    </div>
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          
+        </div>
+  </div>
+</div>
+        
+        
+</div>
+<br>
+
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from <a rel="license"
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.    
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>
