@@ -1,99 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <style>
-    .publication-title {
-      font-family: 'Pacifico', cursive;
-      letter-spacing: 1px;
-    }
-    .highlight-pro {
-      color: #e63946;
-      text-shadow: 0 2px 6px rgba(230, 57, 70, 0.35);
-    }
-    .highlight-text {
-      color: #f28482;
-      text-shadow: 0 1px 4px rgba(242, 132, 130, 0.35);
-    }
-    .image-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      margin-top: 10px;
-    }
-    .image-container img {
-      max-width: 10%;
-      height: auto;
-      border: 2px solid #ffffff;
-      border-radius: 10px;
-    }
-  </style>
-
-  <style>
-    .grid-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px;
-      box-sizing: border-box;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .video-item {
-      text-align: center;
-    }
-
-    .video-item video {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .caption {
-      margin-top: 10px;
-      font-size: 16px;
-      color: #222;
-    }
-
-    .grid-container2 {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px;
-      box-sizing: border-box;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-      gap: 30px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-video video {
-      filter: blur(2.5px) brightness(0.6);
-      opacity: 0.75;
-    }
-  </style>
-
   <meta charset="utf-8">
   <meta name="description" content="Pro-HOI: Perceptive Root-guided Humanoid-Object Interaction">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pro-HOI</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -101,85 +22,237 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+    /* 自定义样式 */
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+      /* 改回学术字体更正式，或者保留 'Pacifico' 如果你喜欢手写风 */
+    }
+
+    .highlight-pro {
+      color: #e63946;
+    }
+
+    /* 视频网格样式 */
+    .grid-container {
+      width: 60vw;
+      max-width: 60vw;
+      margin-left: calc(50% - 30vw);
+      margin-right: calc(50% - 30vw);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      /* 自适应列宽 */
+      gap: 20px;
+      padding: 20px 40px;
+    }
+
+    .video-item {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .video-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .video-item video {
+      width: 100%;
+      display: block;
+    }
+
+    .caption {
+      padding: 10px;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #4a4a4a;
+      font-weight: 500;
+    }
+
+    /* Pipeline 图片样式 */
+    .pipeline-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      margin-bottom: 10px;
+    }
+
+    /* Hero Video Filter 特效 */
+    .hero-bg-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* 核心滤镜设置 */
+      filter: blur(0px) brightness(0.7) contrast(1.1);
+      opacity: 0.89;
+      transform: scale(1.05);
+      /* 放大一点防止模糊边缘露白 */
+    }
+  </style>
 </head>
 
 <body>
 
-  <section class="hero is-link is-fullheight video" style="overflow: hidden; position:relative;">
-    <div class="hero-video" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video playsinline autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
-        <source src=" ./static/videos/teaser.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-video is-hidden-tablet is-inline-block-mobile"
-      style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 101%; height: 101%;">
-      <video playsinline autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
-        <source src=" ./static/videos/teaser.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="overlay"></div>
+  <section class="hero is-link is-fullheight video"
+    style="overflow: hidden; position:relative; background-color: #000;">
 
-    <div class="hero-head is-hidden-mobile">
+    <div class="hero-video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+      <video playsinline autoplay muted loop class="hero-bg-video">
+        <source src="./static/videos/teaser.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="overlay"
+      style="background: rgba(0,0,0,0.2); position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1;">
+    </div>
+
+    <!-- <div style="position: absolute; bottom: 20px; right: 20px; color: white; padding: 10px 15px; border-radius: 8px; font-size: 0.8rem; z-index: 10; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); text-align: right;">
+      <div><sup>*</sup> Equal contribution</div>
+      <div><sup>†</sup>Corresponding Author</div>
+    </div> -->
+
+    <div class="hero-head is-hidden-mobile" style="z-index: 10;">
       <header class="navbar">
         <div class="container is-fluid">
           <div class="navbar-menu">
             <div class="navbar-end">
-              <a class="navbar-item pl-4 pr-4" href="./static/paper/HOI_RSS.pdf" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+              <a class="navbar-item pl-4 pr-4" href="./static/paper/HOI_RSS.pdf"
+                style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">
                 <span class="icon" style="margin-right:5px;">
                   <i class="ai ai-arxiv"></i>
                 </span>
                 <span>PDF</span>
               </a>
-              <a href="https://youtu.be/RS_MtKVIAzY" class="navbar-item pl-4 pr-4" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+              <a href="#" class="navbar-item pl-4 pr-4" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">
                 <span class="icon" style="margin-right:5px;">
                   <i class="fab fa-youtube"></i>
                 </span>
                 <span>Video</span>
               </a>
-              <span class="navbar-item  pl-4 pr-4">
-                <a href="#" class="button is-inverted is-large">
+              <a href="#" class="navbar-item pl-4 pr-4" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">
+                <span class="icon" style="margin-right:5px;">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code (Coming Soon)</span>
+              </a>
+              <!-- <span class="navbar-item pl-4 pr-4">
+                <a href="#" class="button is-inverted is-large" style="opacity: 1;">
                   <span class="icon">
                     <i class="fab fa-github"></i>
                   </span>
                   <span>Code (Coming Soon)</span>
                 </a>
-              </span>
+              </span> -->
             </div>
           </div>
         </div>
       </header>
     </div>
 
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 9rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-          <span class="highlight-pro">Pro-HOI</span>
+    <div class="hero-body" style="z-index: 10;">
+      <div class="container is-fluid has-text-centered">
+        <h1 class="title is-1 publication-title is-size-1-mobile"
+          style="font-size: 5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">
+          <span class="highlight-pro" style="font-size: 120px;">Pro-HOI</span>
         </h1>
-        <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 3.5rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-          <span class="highlight-pro">P</span>erceptive <span class="highlight-pro">Ro</span>ot-guided <span class="highlight-pro">H</span>umanoid-<span class="highlight-pro">O</span>bject <span class="highlight-pro">I</span>nteraction</h1>
-        </h1>
-        <p style="font-size: 1.5rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-          Author Names Omitted for Anonymous Review
-        </p>
+        <h2 class="subtitle is-3 publication-title"
+          style="font-size: 4rem; text-shadow: 1px 1px 6px rgba(0,0,0,0.8); margin-top: 20px;">
+            <span class="highlight-pro">P</span>erceptive <span class="highlight-pro">Ro</span>ot-guided <span class="highlight-pro">H</span>umanoid-<span class="highlight-pro">O</span>bject <span class="highlight-pro">I</span>nteraction
+        </h2>
+
+        <div class="is-size-4 publication-authors" style="margin-top: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+          <span class="author-block"><a href="#">Yuhang Lin<sup>1,2</sup></a>,</span>
+          <span class="author-block"><a href="#">Jiyuan Shi<sup>1</sup></a>,</span>
+          <span class="author-block"><a href="#">Dewei Wang<sup>1,3</sup></a>,</span>
+          <span class="author-block"><a href="#">Jipeng Kong<sup>1,4</sup></a>,</span>
+          <span class="author-block"><a href="#">Yong Liu<sup>2</sup></a>,</span>
+          <span class="author-block"><a href="#">Chenjia Bai<sup>1,†</sup></a>,</span>
+          <span class="author-block"><a href="#">Xuelong Li<sup>1,†</sup></a></span><br>
+          <div><sup>†</sup>Corresponding Author</div>
+
+        </div>
+
+        <div class="is-size-5 publication-authors"
+          style="margin-top: 10px; color: #ddd; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+          <span class="author-block"></span>
+        </div>
       </div>
     </div>
-
   </section>
 
   <section class="section">
-    <div class="container">
+    <div class="container is-max-desktop">
       <div class="columns is-centered">
-        <div class="column is-half">
-          <h2 class="title is-2">Video</h2>
-          <div class="publication-video" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-            <video src="./static/videos/main_1.MP4" autoplay muted loop playsinline controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"></video>
+
+        <div class="column">
+          <h2 class="title is-3 has-text-centered">Video</h2>
+          <div class="publication-video"
+            style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <iframe src="./static/videos/main_1.MP4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
           </div>
         </div>
-        <div class="column is-fluid">
-          <h2 class="title is-2">Abstract</h2>
+  </section>
+
+  <section class="section" style="padding-top: 0rem; margin-top: -30px;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+
+        <div class="column">
+          <h2 class="title is-3 has-text-centered">Abstract</h2>
           <div class="content has-text-justified">
-            <p class="abstract-text" style="font-size: 0.95rem; line-height: 1.5;">
-              Reliable humanoid-object interaction remains difficult because carrying requires balanced locomotion, closed-loop perception, and integration with high-level planners. Pro-HOI introduces a root-guided RL framework that conditions control on desired root trajectories while using motion tracking only as reward, making the root a universal interface for navigation and obstacle avoidance. A persistent object estimation module fuses real-time detection with a digital twin to detect drops and trigger autonomous re-grasping, enabling long-horizon robustness. Deployed on a Unitree G1 with onboard sensing and computing, Pro-HOI outperforms baselines in generalization and achieves stable multi-cycle box carrying in complex scenes.
+            <p style="font-size: 1rem; line-height: 1.6;">
+              Executing reliable Humanoid-Object Interaction
+              (HOI) tasks for humanoid robots is hindered by the lack of
+              generalized control interfaces and robust closed-loop perception
+              mechanisms. In this work, we introduce Perceptive Root-guided
+              Humanoid-Object Interaction, Pro-HOI, a generalizable frame-
+              work for robust humanoid loco-manipulation. First, we collect
+              box-carrying motions that are suitable for real-world deployment
+              and optimize penetration artifacts through a Signed Distance
+              Field loss. Second, we propose a novel training framework
+              that conditions the policy on a desired root-trajectory while
+              utilizing reference motion exclusively as a reward. This design
+              not only eliminates the need for intricate reward tuning but
+              also establishes root trajectory as a universal interface for
+              high-level planners, enabling simultaneous navigation and loco-
+              manipulation. Furthermore, to ensure operational reliability, we
+              incorporate a persistent object estimation module. By fusing real-
+              time detection with Digital Twin, this module allows the robot to
+              autonomously detect slippage and trigger re-grasping maneuvers.
+              Empirical validation on a Unitree G1 robot demonstrates that
+              Pro-HOI significantly outperforms baselines in generalization
+              and robustness, achieving reliable long-horizon execution in
+              complex real-world scenarios.
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background-color: #f5f5f5;">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Method</h2>
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <img src="./static/images/pipeline.png" alt="Pro-HOI Pipeline" class="pipeline-img">
+          <div class="content has-text-justified is-size-6">
+            <p>
+              <strong>Overview of Pro-HOI:</strong> 
+              <strong>a) Data Preparation:</strong> We frist collect human motion clips using the mocap system, and augment them with object geometries
+              in Blender. Then we use SDF-based optimization to generate physically feasible reference motions. 
+              <strong>b) Root-Guided Policy Learning:</strong> The RL policy is
+              trained to perform whole-body interaction skills conditioned on the desired root trajectory, while utilizing the reference motion as rewards.
+              <strong>c) Real-world Deployment:</strong> We integrate FoundationPose for 6D object pose estimation and FAST-LIO2 [42] for root pose estimation, combined with the Interaction Pose
+              Prior and a task specific planner to generate target root trajectories. The full stack executes entirely onboard a Jetson NX with a D435i camera and a Mid-360
+              LiDAR, achieving robust sim-to-real transfer.
             </p>
           </div>
         </div>
@@ -188,90 +261,61 @@
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2 class="title is-2" style="text-align: center;">Figures</h2>
-
-      <h3 class="title is-4">Method</h3>
-      <p class="content">
-        [Placeholder] Briefly explain the Pro-HOI pipeline, root-guided policy training, and digital twin perception loop.
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Real-World Experiments</h2>
+      <p class="has-text-centered is-size-5" style="margin-bottom: 30px; color: #666;">
+        Deployed on Unitree G1 Humanoid - Onboard Computing
       </p>
-      <div class="columns is-multiline is-centered">
-        <div class="column is-half has-text-centered">
-          <img src="./static/images/cover.png" alt="System overview">
-          <div class="caption">System overview</div>
-        </div>
-        <div class="column is-half has-text-centered">
-          <img src="./static/images/pipeline.png" alt="Pipeline">
-          <div class="caption">Pipeline</div>
-        </div>
-        <div class="column is-half has-text-centered">
-          <img src="./static/images/contact_phase.png" alt="Contact phase">
-          <div class="caption">Contact phase</div>
-        </div>
-      </div>
 
-      <h3 class="title is-4">Experiments</h3>
-      <p class="content">
-        [Placeholder] Summarize evaluation settings and key quantitative findings for robustness and precision.
-      </p>
-      <div class="columns is-multiline is-centered">
-        <div class="column is-half has-text-centered">
-          <img src="./static/images/lift_heatmap.png" alt="Lift heatmap">
-          <div class="caption">Lift heatmap</div>
+      <div class="grid-container">
+
+        <div class="video-item" >
+          <video autoplay loop muted playsinline controls src="./static/videos/main_1.mp4"></video>
+          <div class="caption"><strong>Long-Horizon Robustness:</strong> Continuous carrying cycles in complex scenes.
+          </div>
         </div>
-        <div class="column is-half has-text-centered">
-          <img src="./static/images/precision_distribution.png" alt="Precision distribution">
-          <div class="caption">Precision distribution</div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/run_fail.MP4"></video>
+          <div class="caption"><strong>Failure Recovery:</strong> Auto re-grasping after slippage via Digital Twin.
+          </div>
         </div>
-        <div class="column is-half has-text-centered">
-          <img src="./static/images/mujoco_est.png" alt="Mujoco estimation">
-          <div class="caption">Mujoco estimation</div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/digital_twin.mov"></video>
+          <div class="caption"><strong>Digital Twin:</strong> Real-time state estimation & drop detection.</div>
         </div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/nav_1.MP4"></video>
+          <div class="caption"><strong>Obstacle Avoidance:</strong> Navigating around static obstacles.</div>
+        </div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/nav_2.MP4"></video>
+          <div class="caption"><strong>Guided Navigation:</strong> Following high-level directional commands.</div>
+        </div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/run_1.MP4"></video>
+          <div class="caption"><strong>Stylized Running:</strong> High-speed locomotion with load.</div>
+        </div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/run_2.MP4"></video>
+          <div class="caption"><strong>Dynamic Robustness:</strong> Maintaining balance under heavy disturbance.</div>
+        </div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/main_2.MP4"></video>
+          <div class="caption"><strong>Execution Cycle:</strong> Full pick-carry-place pipeline.</div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-2" style="text-align: center;">Real-world carrying and navigation</h2>
-      <div class="grid-container2">
-        <div class="video-item">
-          <video autoplay loop muted playsinline src="./static/videos/main_2.MP4" poster="./static/videos/loading-icon.gif"></video>
-          <div class="caption">Carrying cycle execution</div>
-        </div>
-        <div class="video-item">
-          <video autoplay loop muted playsinline src="./static/videos/nav_1.MP4" poster="./static/videos/loading-icon.gif"></video>
-          <div class="caption">Navigation with obstacle avoidance</div>
-        </div>
-        <div class="video-item">
-          <video autoplay loop muted playsinline src="./static/videos/nav_2.MP4" poster="./static/videos/loading-icon.gif"></video>
-          <div class="caption">Navigation under guidance</div>
-        </div>
-        <div class="video-item">
-          <video autoplay loop muted playsinline src="./static/videos/run_1.MP4" poster="./static/videos/loading-icon.gif"></video>
-          <div class="caption">Stylized running while carrying</div>
-        </div>
-        <div class="video-item">
-          <video autoplay loop muted playsinline src="./static/videos/run_2.MP4" poster="./static/videos/loading-icon.gif"></video>
-          <div class="caption">Robust locomotion with load</div>
-        </div>
-        <div class="video-item">
-          <video autoplay loop muted playsinline src="./static/videos/run_fail.MP4" poster="./static/videos/loading-icon.gif"></video>
-          <div class="caption">Recovery after slippage</div>
-        </div>
-        <div class="video-item">
-          <video autoplay loop muted playsinline src="./static/videos/robust.MOV" poster="./static/videos/loading-icon.gif"></video>
-          <div class="caption">Long-horizon robustness</div>
-        </div>
-        <div class="video-item">
-          <video autoplay loop muted playsinline src="./static/videos/digital_twin.mov" poster="./static/videos/loading-icon.gif"></video>
-          <div class="caption">Digital twin aided state estimation</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="BibTeX">
+  <section class="section" id="BibTeX" style="background-color: #f5f5f5;">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>@inproceedings{prohoi2025,
@@ -286,10 +330,13 @@
   <footer class="footer">
     <div class="container">
       <div class="content has-text-centered">
-        <p>Page template borrowed from <a href="https://nerfies.github.io/"><span class="dnerf">Nerfies</span></a>, <a href="https://umi-on-legs.github.io/">UMI on Legs</a>.</p>
+        <p>
+          Page template borrowed from <a href="https://nerfies.github.io/">Nerfies</a>.
+        </p>
       </div>
     </div>
   </footer>
 
 </body>
+
 </html>
