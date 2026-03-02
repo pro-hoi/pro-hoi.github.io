@@ -22,7 +22,19 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      }
+    };
+  </script>
 
+  <script
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    async>
+  </script>
   <style>
     /* 自定义样式 */
     .publication-title {
@@ -289,7 +301,51 @@
     </div>
   </section>
 
-  <!-- <section class="section">
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Experiment Results</h2>
+
+      <div class="columns is-centered is-multiline">
+
+        <div class="column is-10 is-offset-1 has-text-centered">
+          <img src="./static/images/table2.png" class="pipeline-img">
+          <div class="content has-text-justified">
+            <p style="font-size: 1rem; line-height: 1.6;">
+              The ID set utilizes the exact robot and object configurations from the training distribution.
+              The OOD set is designed to test the policy by random sampling of the initial object position and the target placement position in the workspace. 
+              Specifically, we created a grid with a spacing of $0.2$m within a trapezoidal region defined by $x \in [0.4, 1.4]$ m and $y \in [-x, x]$ m. 
+              For each grid point, we evaluated object yaw orientations from $\{0^\circ, 15^\circ, 30^\circ, 45^\circ\}$. 
+              Furthermore, target placement locations were sampled along a circle with a radius of $4$m centered on the robot at $10^\circ$ intervals. 
+              This extensive evaluation protocol yields a total of $5,756$ distinct task scenarios. 
+            </p>
+          </div>
+        </div>
+
+        <div class="column is-10 is-offset-1 has-text-centered">
+          <img src="./static/images/lift_heatmap.png" class="pipeline-img">
+          <div class="content has-text-justified">
+            <p style="font-size: 1rem; line-height: 1.6;">
+              Spatial distribution of grasp success rates across the OOD evaluation set.
+              The color scale indicates the success rate, where darker green denotes higher stability and red/yellow indicates failure.
+            </p>
+          </div>
+        </div>
+
+        <div class="column is-10 is-offset-1 has-text-centered">
+          <img src="./static/images/precision_distribution.png" class="pipeline-img" style="width:60%;">
+          <div class="content has-text-justified">
+            <p style="font-size: 1rem; line-height: 1.6;">
+              Statistical distribution of placement precision across different methods.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Real-World Experiments</h2>
       <p class="has-text-centered is-size-5" style="margin-bottom: 30px; color: #666;">
@@ -299,50 +355,42 @@
       <div class="grid-container">
 
         <div class="video-item" >
-          <video autoplay loop muted playsinline controls src="./static/videos/main_1.mp4"></video>
+          <video autoplay loop muted playsinline controls src="./static/videos/long_mask_compress.mp4"></video>
           <div class="caption"><strong>Long-Horizon Robustness:</strong> Continuous carrying cycles in complex scenes.
           </div>
         </div>
 
         <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/run_fail.MP4"></video>
+          <video autoplay loop muted playsinline controls src="./static/videos/digital_twin_compress.mp4"></video>
           <div class="caption"><strong>Failure Recovery:</strong> Auto re-grasping after slippage via Digital Twin.
           </div>
         </div>
 
         <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/digital_twin.mov"></video>
-          <div class="caption"><strong>Digital Twin:</strong> Real-time state estimation & drop detection.</div>
-        </div>
-
-        <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/nav_1.MP4"></video>
+          <video autoplay loop muted playsinline controls src="./static/videos/obs1_compress.mp4"></video>
           <div class="caption"><strong>Obstacle Avoidance:</strong> Navigating around static obstacles.</div>
         </div>
 
         <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/nav_2.MP4"></video>
-          <div class="caption"><strong>Guided Navigation:</strong> Following high-level directional commands.</div>
-        </div>
-
-        <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/run_1.MP4"></video>
+          <video autoplay loop muted playsinline controls src="./static/videos/run.mp4"></video>
           <div class="caption"><strong>Stylized Running:</strong> High-speed locomotion with load.</div>
-        </div>
-
-        <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/run_2.MP4"></video>
-          <div class="caption"><strong>Dynamic Robustness:</strong> Maintaining balance under heavy disturbance.</div>
-        </div>
-
-        <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/main_2.MP4"></video>
-          <div class="caption"><strong>Execution Cycle:</strong> Full pick-carry-place pipeline.</div>
         </div>
 
       </div>
     </div>
-  </section> -->
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">DIY waypoints</h2>
+      <div class="grid-container" style="width:80%; margin:0 auto;">
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/guided_compress.mp4" ></video>
+          <div class="caption"><strong>Guided Navigation:</strong> Following high-level directional commands.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="section" id="BibTeX" style="background-color: #f5f5f5;">
     <div class="container is-max-desktop content">
