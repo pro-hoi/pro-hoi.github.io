@@ -345,52 +345,73 @@
     </div>
   </section>
 
-  <!-- <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Real-World Experiments</h2>
-      <p class="has-text-centered is-size-5" style="margin-bottom: 30px; color: #666;">
-        Deployed on Unitree G1 Humanoid - Onboard Computing
-      </p>
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Real-World Experiments</h2>
+    <p class="has-text-centered is-size-5" style="margin-bottom: 30px; color: #666;">
+      Deployed on Unitree G1 Humanoid - Onboard Computing
+    </p>
 
-      <div class="grid-container">
+    <style>
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 每行2列，等宽 */
+        gap: 20px; /* 视频之间的间距 */
+        padding: 10px;
+      }
+      
+      .video-item {
+        width: 100%;
+      }
+      
+      .video-item video {
+        width: 100%;
+        height: auto;
+        border-radius: 8px; /* 可选：圆角效果 */
+      }
+      
+      .caption {
+        margin-top: 8px;
+        text-align: center;
+        font-size: 14px;
+      }
+    </style>
 
-        <div class="video-item" >
-          <video autoplay loop muted playsinline controls src="./static/videos/long_mask_compress.mp4"></video>
-          <div class="caption"><strong>Long-Horizon Robustness:</strong> Continuous carrying cycles in complex scenes.
-          </div>
-        </div>
+    <div class="video-grid">
+      <div class="video-item">
+        <video autoplay loop muted playsinline controls src="./static/videos/long_maskv2_compress.mp4"></video>
+        <div class="caption"><strong>Long-Horizon Robustness:</strong> Continuous carrying cycles in complex scenes.</div>
+      </div>
 
-        <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/digital_twin_compress.mp4"></video>
-          <div class="caption"><strong>Failure Recovery:</strong> Auto re-grasping after slippage via Digital Twin.
-          </div>
-        </div>
+      <div class="video-item">
+        <video autoplay loop muted playsinline controls src="./static/videos/digital_twin_compress.mp4"></video>
+        <div class="caption"><strong>Failure Recovery:</strong> Auto re-grasping after slippage via Digital Twin.</div>
+      </div>
 
-        <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/obs1_compress.mp4"></video>
-          <div class="caption"><strong>Obstacle Avoidance:</strong> Navigating around static obstacles.</div>
-        </div>
+      <div class="video-item">
+        <video autoplay loop muted playsinline controls src="./static/videos/obs1_compress.mp4"></video>
+        <div class="caption"><strong>Obstacle Avoidance:</strong> Navigating around static obstacles.</div>
+      </div>
 
-        <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/run.mp4"></video>
-          <div class="caption"><strong>Stylized Running:</strong> High-speed locomotion with load.</div>
-        </div>
-
+      <div class="video-item">
+        <video autoplay loop muted playsinline controls src="./static/videos/run.mp4"></video>
+        <div class="caption"><strong>Stylized Running:</strong> High-speed locomotion with load.</div>
       </div>
     </div>
-  </section> -->
+  </div>
+</section>
 
-  <!-- <section class="section">
+  <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">DIY waypoints</h2>
       <div class="grid-container" style="width:80%; margin:0 auto;">
         <div class="video-item">
-          <video autoplay loop muted playsinline controls src="./static/videos/guided_compress.mp4" ></video>
+          <video autoplay loop muted playsinline controls src="./static/videos/guided_compressv2.mp4" ></video>
           <div class="caption"><strong>Guided Navigation:</strong> Following high-level directional commands.</div>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 
   <section class="section" id="BibTeX" style="background-color: #f5f5f5;">
     <div class="container is-max-desktop content">
