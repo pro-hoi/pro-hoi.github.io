@@ -412,6 +412,62 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Various Objects</h2>
+      <p class="has-text-centered is-size-5" style="margin-bottom: 30px; color: #666;">
+        Interacting with other types of objects
+      </p>
+
+      <style>
+        .video-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr); /* 每行2列，等宽 */
+          gap: 20px; /* 视频之间的间距 */
+          padding: 10px;
+        }
+        
+        .video-item {
+          width: 100%;
+        }
+        
+        .video-item video {
+          width: 100%;
+          height: auto;
+          border-radius: 8px; /* 可选：圆角效果 */
+        }
+        
+        .caption {
+          margin-top: 8px;
+          text-align: center;
+          font-size: 14px;
+        }
+      </style>
+
+      <div class="video-grid">
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/largetable_compressed.mp4"></video>
+          <div class="caption"><strong>largetable</strong></div>
+        </div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/plasticbox_compressed.mp4"></video>
+          <div class="caption"><strong>plasticbox</strong></div>
+        </div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/suitcase2_compressed.mp4"></video>
+          <div class="caption"><strong>suitcase</strong></div>
+        </div>
+
+        <div class="video-item">
+          <video autoplay loop muted playsinline controls src="./static/videos/trashcan_compressed.mp4"></video>
+          <div class="caption"><strong>trashcan</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="BibTeX" style="background-color: #f5f5f5;">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
